@@ -11,7 +11,7 @@ Function InitPicasa() As Object
     this.scope = this.protocol + "://picasaweb.google.com/data"
     this.prefix = this.scope + "/feed/api"
     this.oauth_prefix = "https://www.google.com/accounts"
-    this.link_prefix = "LINKING WEBSITE PREFIX"
+    this.link_prefix = getLinkWebsite()
     
     this.ExecServerAPI = picasa_exec_api
     

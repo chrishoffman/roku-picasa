@@ -1,6 +1,6 @@
 
 Sub Init()
-    if m.oa = invalid then m.oa = InitOauth("RokuPicasa", "APIKEY", "APISECRET", "1.0")
+    if m.oa = invalid then m.oa = InitOauth("RokuPicasa", getApiKey(), getApiSecret(), "1.0")
     if m.picasa = invalid then m.picasa = InitPicasa()
 End Sub
 
