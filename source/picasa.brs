@@ -8,7 +8,9 @@ Function InitPicasa() As Object
     ' constructor
     this = CreateObject("roAssociativeArray")
     this.protocol = "http"
-    this.scope = this.protocol + "://picasaweb.google.com/data"
+    this.proxy_api_url = getProxyAPI()
+    this.api_base = "picasaweb.google.com/data"
+    this.scope = this.protocol + "://" + this.api_base
     this.prefix = this.scope + "/feed/api"
     this.oauth_prefix = "https://www.google.com/accounts"
     this.link_prefix = getLinkWebsite()
@@ -71,6 +73,7 @@ Function picasa_exec_api(url_stub="" As String, username="default" As Dynamic)
     
     http = NewHttp(m.prefix + "/" + username + url_stub)
     oa.sign(http,true)
+    http.callbackPrep = ProxyApiCallback
     
     xml=http.getToStringWithTimeout(10)
     print xml
@@ -80,6 +83,13 @@ Function picasa_exec_api(url_stub="" As String, username="default" As Dynamic)
     end if
     
     return rsp
+End Function
+
+'Override default oauth callback
+Function ProxyApiCallback()
+    picasa = LoadPicasa()
+    Oauth().prep(m) 'Sign request
+    m.base = strReplace(m.base, picasa.api_base, picasa.proxy_api_url) 
 End Function
 
 ' ********************************************************************
