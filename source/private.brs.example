@@ -1,0 +1,23 @@
+' *********************************************************
+' *********************************************************
+' **
+' **  Roku DVP SmugMug Channel (BrightScript)
+' **
+' **  C. Hoffman, December 2009
+' **
+' **  Copyright (c) 2009 Chris Hoffman. All Rights Reserved.
+' **
+' *********************************************************
+' *********************************************************
+
+Function getApiKey() As String
+	return "api_key"
+End Function
+
+Function getApiSecret() As String
+	return "api_secret"
+End Function
+
+Function getLinkWebsite() As String
+    return "http://link.example.com"
+End Function
